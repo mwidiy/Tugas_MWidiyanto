@@ -10,6 +10,13 @@ class DatabaseSeeder extends Seeder
     {
         $now = date('Y-m-d H:i:s');
 
+        // Hapus semua data lama sebelum insert fresh seed
+        $this->db->query('SET FOREIGN_KEY_CHECKS=0');
+        $this->db->table('transactions')->truncate();
+        $this->db->table('products')->truncate();
+        $this->db->table('users')->truncate();
+        $this->db->query('SET FOREIGN_KEY_CHECKS=1');
+
         // 1. Data Dummy Users
         $users = [
             ['name' => 'Budi Pratama',     'created_at' => $now, 'updated_at' => $now],
