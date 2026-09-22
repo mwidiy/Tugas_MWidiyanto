@@ -1,33 +1,22 @@
 # Technical Assessment & Portfolio Submission
 
-Repositori terpadu (*Monorepo*) yang berisi implementasi dan dokumentasi 3 tugas seleksi teknis oleh **M. Widiyanto**, mencakup bidang **Computer Vision & AI**, **IoT & Embedded Systems (Camera Control GUI)**, dan **Web Development & Database Transaction Simulation**.
+Repositori terpadu (Monorepo) yang berisi implementasi dan dokumentasi 3 tugas seleksi teknis oleh M. Widiyanto, mencakup bidang Computer Vision & AI, IoT & Embedded Systems (Camera Control GUI), dan Web Development & Database Transaction Simulation.
 
----
 
-## 📋 Ringkasan Tugas & Teknologi
-
-| No | Tugas | Domain | Teknologi Utama | Deskripsi Singkat | Direktori |
-|---|---|---|---|---|---|
-| 1 | **Deteksi Objek Buah (YOLO)** | Computer Vision / AI | Python, Ultralytics YOLOv8, PyTorch, OpenCV | Model deteksi 9 kelas buah dengan pop-up interaktif, kontrol sensitivitas threshold dinamis (`+` / `-`), dan export hasil inferensi. | [`/Tugas_1`](./Tugas_1) |
-| 2 | **Camera Control System** | IoT & Embedded Systems | Python, Tkinter, OpenCV, DirectShow | Aplikasi GUI modern untuk live camera preview, pengaturan Shutter Speed/Exposure, ISO/Gain, Single Capture, dan Burst Capture mode. | [`/Tugas_2`](./Tugas_2) |
-| 3 | **CMS & Simulasi Pembelian** | Web & Database | PHP 8, CodeIgniter 4, MySQL, Bootstrap 5 | Sistem manajemen inventaris produk, master pelanggan, dan transaksi belanja dengan kalkulasi otomatis, pemotongan stok, serta pembatalan transaksi dengan pengembalian stok. | [`/Tugas_3`](./Tugas_3) |
-
----
-
-## 💻 Spesifikasi Lingkungan Pengujian (Hardware & OS)
+## Spesifikasi Lingkungan Pengujian (Hardware & OS)
 
 Seluruh aplikasi telah diuji dan berjalan optimal pada lingkungan perangkat keras berikut:
 
-- **Sistem Operasi**: Windows 11 Home Single Language 64-bit (Build 26200)
-- **Model Perangkat**: Acer Nitro AN515-56
-- **Prosesor (CPU)**: 11th Gen Intel(R) Core(TM) i5-11300H @ 3.10GHz (8 CPUs)
-- **Grafis (GPU)**: NVIDIA GeForce GTX 1650 (4 GB GDDR6)
-- **Memori (RAM)**: 8 GB DDR4
-- **Penyimpanan (Storage)**: 512 GB NVMe SSD
+- Sistem Operasi: Windows 11 Home Single Language 64-bit (Build 26200)
+- Model Perangkat: Acer Nitro AN515-56
+- Prosesor (CPU): 11th Gen Intel(R) Core(TM) i5-11300H @ 3.10GHz (8 CPUs)
+- Grafis (GPU): NVIDIA GeForce GTX 1650 (4 GB GDDR6)
+- Memori (RAM): 8 GB DDR4
+- Penyimpanan (Storage): 512 GB NVMe SSD
 
 ---
 
-## 📁 Struktur Direktori Repositori
+## Struktur Direktori Repositori
 
 ```text
 Tugas_M.Widiyanto/
@@ -71,61 +60,61 @@ Tugas_M.Widiyanto/
 
 ---
 
-## ⚡ Panduan Menjalankan Masing-Masing Tugas
+## Panduan Menjalankan Masing-Masing Tugas
 
-### 🍎 1. Menjalankan Tugas 1 (Deteksi Objek Buah)
-Buka terminal pada direktori `Tugas_1`:
+### 1. Menjalankan Tugas 1 (Deteksi Objek Buah)
+Buka terminal pada direktori Tugas_1:
 ```bash
 cd Tugas_1
 pip install -r requirements.txt
 python infer.py
 ```
-* **Navigasi Gambar**: Tekan `Space` / `N` (Next) atau `P` (Previous).
-* **Sensitivitas Keyakinan**: Tekan `+` untuk menaikkan threshold keyakinan, atau `-` untuk menurunkan threshold secara real-time.
-* **Simpan Hasil**: Tekan `S` untuk menyimpan gambar deteksi ke folder `runs/inference_output`.
-* **Keluar**: Tekan `Esc` atau `Q`.
+- Navigasi Gambar: Tekan Space / N (Next) atau P (Previous).
+- Sensitivitas Keyakinan: Tekan + untuk menaikkan threshold keyakinan, atau - untuk menurunkan threshold secara real-time.
+- Simpan Hasil: Tekan S untuk menyimpan gambar deteksi ke folder runs/inference_output.
+- Keluar: Tekan Esc atau Q.
 
 ---
 
-### 📷 2. Menjalankan Tugas 2 (IoT Camera Control GUI)
-Buka terminal pada direktori `Tugas_2`:
+### 2. Menjalankan Tugas 2 (IoT Camera Control GUI)
+Buka terminal pada direktori Tugas_2:
 ```bash
 cd Tugas_2
 pip install -r requirements.txt
 python main.py
 ```
-* **Single Capture**: Tekan tombol `Space` atau `C` (hasil otomatis tersimpan di folder `captures/`).
-* **Burst Capture**: Tekan dan tahan tombol `B` pada keyboard untuk continuous high-speed capture (otomatis tersimpan per folder sesi di `captures/burst_YYYYMMDD_HHMMSS/`).
-* **Reconnect**: Tekan tombol `R` jika terjadi gangguan sambungan kamera.
-* **Keluar**: Tekan `Esc` atau `Q`.
+- Single Capture: Tekan tombol Space atau C (hasil otomatis tersimpan di folder captures/).
+- Burst Capture: Tekan dan tahan tombol B pada keyboard untuk continuous high-speed capture (otomatis tersimpan per folder sesi di captures/burst_YYYYMMDD_HHMMSS/).
+- Reconnect: Tekan tombol R jika terjadi gangguan sambungan kamera.
+- Keluar: Tekan Esc atau Q.
 
 ---
 
-### 🌐 3. Menjalankan Tugas 3 (Web CMS & Simulasi Toko)
+### 3. Menjalankan Tugas 3 (Web CMS & Simulasi Toko)
 Pastikan MySQL (XAMPP / Laragon) sudah berjalan di port 3306.
-Buka direktori `Tugas_3`:
+Buka direktori Tugas_3:
 
 #### Langkah A: Inisialisasi Database
-* **Cara Otomatis**: Klik dua kali file `setup_db.bat`, atau
-* **Cara Manual via Terminal**:
+- Cara Otomatis: Klik dua kali file setup_db.bat, atau
+- Cara Manual via Terminal:
   ```bash
   cd Tugas_3
   php spark migrate
   php spark db:seed DatabaseSeeder
   ```
-  *(Atau import file `cms_simulasi_toko.sql` ke database MySQL `cms_simulasi_toko` melalui phpMyAdmin).*
+  (Atau import file cms_simulasi_toko.sql ke database MySQL cms_simulasi_toko melalui phpMyAdmin).
 
 #### Langkah B: Menjalankan Server Web
-* **Cara Otomatis**: Klik dua kali file `serve.bat`, atau
-* **Cara Manual via Terminal**:
+- Cara Otomatis: Klik dua kali file serve.bat, atau
+- Cara Manual via Terminal:
   ```bash
   php spark serve --port 8080
   ```
-* Buka browser dan akses: **`http://localhost:8080`**
+- Buka browser dan akses: http://localhost:8080
 
 ---
 
-## 👤 Pengembang
+## Profil Pengembang
 
-- **Nama**: M. Widiyanto
-- **Tujuan**: Pengumpulan Tugas Seleksi Kerja / Technical Test
+- Nama: M. Widiyanto
+- Tujuan: Pengumpulan Tugas Seleksi Kerja / Technical Test
