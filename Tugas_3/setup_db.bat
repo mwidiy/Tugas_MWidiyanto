@@ -1,7 +1,7 @@
 @echo off
 setlocal
 echo =========================================================
-echo   Setup Database & Migrasi CodeIgniter 4 (Tugas 3)
+echo   Setup Database dan Migrasi CodeIgniter 4 (Tugas 3)
 echo =========================================================
 
 REM Auto-create .env from env template if missing
@@ -9,6 +9,19 @@ if not exist ".env" (
     if exist "env" (
         copy "env" ".env" >nul
         echo [INFO] File .env otomatis dibuat dari template env.
+    )
+)
+
+REM Pastikan folder vendor CodeIgniter 4 terinstall
+if not exist "vendor" (
+    echo [INFO] Folder vendor belum ditemukan. Menjalankan composer install...
+    where composer >nul 2>nul
+    if %errorlevel% equ 0 (
+        call composer install
+    ) else (
+        echo [ERROR] Composer tidak ditemukan! Silakan jalankan 'composer install' secara manual.
+        pause
+        exit /b 1
     )
 )
 
@@ -33,6 +46,9 @@ pause
 exit /b 1
 
 :run_setup
+echo 0. Menyiapkan Database Schema (cms_simulasi_toko)...
+%PHP_CMD% spark db:create cms_simulasi_toko
+
 echo 1. Menjalankan Database Migrations...
 %PHP_CMD% spark migrate
 

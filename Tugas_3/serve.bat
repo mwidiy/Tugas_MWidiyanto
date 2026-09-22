@@ -12,6 +12,19 @@ if not exist ".env" (
     )
 )
 
+REM Pastikan folder vendor CodeIgniter 4 terinstall
+if not exist "vendor" (
+    echo [INFO] Folder vendor belum ditemukan. Menjalankan composer install...
+    where composer >nul 2>nul
+    if %errorlevel% equ 0 (
+        call composer install
+    ) else (
+        echo [ERROR] Composer tidak ditemukan! Silakan jalankan 'composer install' secara manual.
+        pause
+        exit /b 1
+    )
+)
+
 REM Cek apakah PHP ada di sistem PATH
 where php >nul 2>nul
 if %errorlevel% equ 0 (
