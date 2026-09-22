@@ -1,0 +1,96 @@
+# =============================================================================
+# ROOT GITIGNORE - SUBMISSION PORTOFOLIO / TUGAS KERJA (M. WIDIYANTO)
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# 1. Operating System Files
+# -----------------------------------------------------------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# -----------------------------------------------------------------------------
+# 2. IDE & Editor Files
+# -----------------------------------------------------------------------------
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.swo
+
+# -----------------------------------------------------------------------------
+# 3. Python Environment & Compilation (Tugas 1 & Tugas 2)
+# -----------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.venv/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# -----------------------------------------------------------------------------
+# 4. Tugas 1: YOLO Object Detection Artifacts
+# -----------------------------------------------------------------------------
+# Catatan: dataset/ tetap disertakan (Opsi A) dan best.pt utama tetap disertakan.
+Tugas_1/data_runtime.yaml
+Tugas_1/runs/inference_output/
+
+# -----------------------------------------------------------------------------
+# 5. Tugas 2: IoT Camera System
+# -----------------------------------------------------------------------------
+# Jangan simpan hasil tangkapan foto/burst lokal pengujian ke dalam Git
+Tugas_2/captures/*
+!Tugas_2/captures/.gitkeep
+
+# -----------------------------------------------------------------------------
+# 6. Tugas 3: PHP CodeIgniter 4 (Web CMS)
+# -----------------------------------------------------------------------------
+# Dependency Composer (HARUS di-install via 'composer install')
+Tugas_3/vendor/
+
+# Konfigurasi Lingkungan (Environment Secrets)
+Tugas_3/.env
+!Tugas_3/env
+
+# CodeIgniter Writable & Temporary Files
+Tugas_3/writable/cache/*
+!Tugas_3/writable/cache/index.html
+
+Tugas_3/writable/logs/*
+!Tugas_3/writable/logs/index.html
+
+Tugas_3/writable/session/*
+!Tugas_3/writable/session/index.html
+
+Tugas_3/writable/uploads/*
+!Tugas_3/writable/uploads/index.html
+
+Tugas_3/writable/debugbar/*
+!Tugas_3/writable/debugbar/index.html
+
+php_errors.log

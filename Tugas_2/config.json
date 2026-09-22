@@ -1,0 +1,38 @@
+{
+  "camera": {
+    "index": 1,
+    "backend": "AUTO",
+    "default_resolution": {
+      "width": 640,
+      "height": 480
+    },
+    "resolution_presets": [
+      { "label": "640x480 (SD 4:3)", "width": 640, "height": 480 },
+      { "label": "1280x720 (HD 16:9)", "width": 1280, "height": 720 },
+      { "label": "1920x1080 (Full HD 16:9)", "width": 1920, "height": 1080 }
+    ],
+    "exposure": {
+      "default": -4,
+      "min": -13,
+      "max": 0,
+      "auto": true
+    },
+    "iso": {
+      "default": 100,
+      "min": 100,
+      "max": 1600
+    }
+  },
+  "capture": {
+    "save_directory": "captures",
+    "image_format": "jpg",
+    "jpeg_quality": 95,
+    "burst_max_fps": 15
+  },
+  "key_mappings": {
+    "single_capture": ["space", "c"],
+    "burst_capture": "b",
+    "reconnect": "r",
+    "quit": "Escape"
+  }
+}
