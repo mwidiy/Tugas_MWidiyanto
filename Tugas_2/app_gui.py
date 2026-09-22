@@ -20,11 +20,12 @@ from PIL import Image, ImageTk
 class CameraAppGUI:
     """GUI Utama Sistem Kontrol Kamera & Akuisisi Gambar."""
 
-    def __init__(self, root, camera_controller, input_manager, config):
+    def __init__(self, root, camera_controller, input_manager, config, available_cams=None):
         self.root = root
         self.cam = camera_controller
         self.im = input_manager
         self.config = config
+        self.available_cams = available_cams
 
         # Window Setup
         self.root.title("IoT Camera Studio - Embedded Control System")
@@ -178,8 +179,9 @@ class CameraAppGUI:
         lbl_sec0 = tk.Label(container, text="0. PERANGKAT KAMERA", font=("Segoe UI", 10, "bold"), fg="#00cec9", bg="#1a1d24")
         lbl_sec0.pack(anchor="w", pady=(0, 4))
 
-        from camera_controller import detect_available_cameras
-        self.available_cams, best_idx = detect_available_cameras()
+        if not self.available_cams:
+            from camera_controller import detect_available_cameras
+            self.available_cams, best_idx = detect_available_cameras()
         self.cam_labels = [c["label"] for c in self.available_cams]
         self.cam_map = {c["label"]: c["index"] for c in self.available_cams}
 

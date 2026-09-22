@@ -1,6 +1,6 @@
 {
   "camera": {
-    "index": 1,
+    "index": 0,
     "backend": "AUTO",
     "default_resolution": {
       "width": 640,

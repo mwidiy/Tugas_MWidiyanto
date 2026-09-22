@@ -5,11 +5,12 @@ pengaturan parameter kamera (Resolusi, Shutter Speed/Exposure, ISO/Gain), deteks
 dan fallback pemrosesan citra digital.
 """
 
+import os
+os.environ.setdefault("OPENCV_LOG_LEVEL", "ERROR")
 import cv2
 import numpy as np
 import threading
 import time
-import os
 import sys
 import subprocess
 import logging
@@ -206,7 +207,10 @@ class CameraController:
                 # DirectShow: 0.25 adalah Manual Exposure, V4L2: 1
                 val = 0.25 if os.name == "nt" else 1
                 self.cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, val)
-                self.cap.set(cv2.CAP_PROP_EXPOSURE, float(exposure))
+                # Batasi hardware exposure ke maks -5.0 (~1/32 detik) agar framerate sensor tidak drop ke 1-2 FPS.
+                # Kenaikan exposure di atas -5.0 ditangani secara digital dan real-time oleh software gain (0% lag).
+                safe_hw_exp = min(-5.0, float(exposure))
+                self.cap.set(cv2.CAP_PROP_EXPOSURE, safe_hw_exp)
         except Exception as e:
             logging.debug(f"Hardware exposure tidak didukung: {e}")
 
@@ -346,21 +350,21 @@ class CameraController:
         """Mengatur nilai Shutter Speed / Exposure (-13 s/d 0)."""
         with self.lock:
             self.exposure_val = int(val)
-            self._apply_hardware_exposure(self.exposure_val, self.auto_exposure)
+        self._apply_hardware_exposure(self.exposure_val, self.auto_exposure)
         logging.info(f"Exposure diset ke: {self.exposure_val}")
 
     def set_iso(self, val):
         """Mengatur nilai ISO / Gain (100 s/d 1600)."""
         with self.lock:
             self.iso_val = int(val)
-            self._apply_hardware_gain(self.iso_val)
+        self._apply_hardware_gain(self.iso_val)
         logging.info(f"ISO diset ke: {self.iso_val}")
 
     def set_auto_exposure(self, enabled):
         """Mengaktifkan atau menonaktifkan Auto-Exposure."""
         with self.lock:
             self.auto_exposure = bool(enabled)
-            self._apply_hardware_exposure(self.exposure_val, self.auto_exposure)
+        self._apply_hardware_exposure(self.exposure_val, self.auto_exposure)
         logging.info(f"Auto Exposure: {'AKTIF' if self.auto_exposure else 'MANUAL'}")
 
     def get_latest_frame(self):

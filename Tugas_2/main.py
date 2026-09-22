@@ -5,6 +5,7 @@ Mendukung peluncuran mode GUI Tkinter Modern maupun mode OpenCV HighGUI mandiri.
 """
 
 import os
+os.environ.setdefault("OPENCV_LOG_LEVEL", "ERROR")
 import sys
 import json
 import argparse
@@ -86,7 +87,12 @@ def run_gui_mode(args, config):
     if args.camera is not None:
         cam_idx = args.camera
     else:
-        cam_idx = cam_cfg.get("index", best_idx)
+        cfg_idx = cam_cfg.get("index")
+        valid_indices = [c["index"] for c in available_cams]
+        if cfg_idx is not None and cfg_idx in valid_indices:
+            cam_idx = cfg_idx
+        else:
+            cam_idx = best_idx
 
     backend = args.backend if args.backend is not None else cam_cfg.get("backend", "AUTO")
     width = args.width if args.width is not None else cam_cfg.get("default_resolution", {}).get("width", 1280)
@@ -112,7 +118,7 @@ def run_gui_mode(args, config):
 
     # Peluncuran GUI Tkinter
     root = tk.Tk()
-    app = CameraAppGUI(root, cam, im, config)
+    app = CameraAppGUI(root, cam, im, config, available_cams=available_cams)
     root.mainloop()
 
 
@@ -126,7 +132,18 @@ def run_opencv_cli_mode(args, config):
     save_dir = cap_cfg.get("save_directory", "captures")
     os.makedirs(save_dir, exist_ok=True)
 
-    cam_idx = args.camera if args.camera is not None else cam_cfg.get("index", 0)
+    from camera_controller import detect_available_cameras
+    available_cams, best_idx = detect_available_cameras()
+
+    if args.camera is not None:
+        cam_idx = args.camera
+    else:
+        cfg_idx = cam_cfg.get("index")
+        valid_indices = [c["index"] for c in available_cams]
+        if cfg_idx is not None and cfg_idx in valid_indices:
+            cam_idx = cfg_idx
+        else:
+            cam_idx = best_idx
     backend = args.backend if args.backend is not None else cam_cfg.get("backend", "AUTO")
     width = args.width if args.width is not None else cam_cfg.get("default_resolution", {}).get("width", 1280)
     height = args.height if args.height is not None else cam_cfg.get("default_resolution", {}).get("height", 720)
